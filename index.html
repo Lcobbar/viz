@@ -15,6 +15,50 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <script>
+        function includeHTMLSnippet() {
+
+            // Traverse the collection of
+            // all HTML elements
+            id = document.getElementsByTagName("*");
+            for (i = 0; i < id.length; i++) {
+                element = id[i];
+
+                // Search for elements with
+                // specific attributes
+                file = element.getAttribute(
+                    "GFG-include-html-snippet");
+
+                if (file) {
+
+                    // Create an HTTP request with the 
+                    // attribute value as the file name
+                    xmlRequest = new XMLHttpRequest();
+                    xmlRequest.onreadystatechange = function () {
+                        if (this.readyState == 4) {
+                            if (this.status == 200) {
+                                element.innerHTML = this.responseText;
+                            }
+
+                            if (this.status == 404) {
+                                element.innerHTML = "Page not found.";
+                            }
+
+                            // Delete the attribute and
+                            // call this function again
+                            element.removeAttribute(
+                                "GFG-include-html-snippet");
+
+                            includeHTMLSnippet();
+                        }
+                    }
+                    xmlRequest.open("GET", file, true);
+                    xmlRequest.send();
+                    return; // Exit function.
+                }
+            }
+        }
+    </script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -69,7 +113,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/citrics.png" alt="Circle Packing" />
+                            <img class="img-fluid" src="assets/img/portfolio/cabin.png" alt="Circle Packing" />
                         </div>
                     </div>
                     <!-- Portfolio Item 2-->
@@ -78,7 +122,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/cake.png" alt="..." />
+                            <img class="img-fluid" src="assets/img/portfolio/game.png" alt="..." />
                         </div>
                     </div>
                     <!-- Portfolio Item 3-->
@@ -87,7 +131,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/circus.png" alt="..." />
+                            <img class="img-fluid" src="assets/img/portfolio/safe.png" alt="..." />
                         </div>
                     </div>
                 </div>
@@ -129,7 +173,34 @@
                                     </div>
                                      <!-- Portfolio Modal - Image-->
                                     <div class="flourish-embed flourish-hierarchy" data-src="visualisation/11795937"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
-<!-
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 3-->
+        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h3 class="text-secondary text-uppercase mb-0">Convex hull</h3>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <div GFG-include-html-snippet="fish.html"></div>
+
                                 </div>
 
                             </div>
@@ -138,7 +209,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Footer-->
         <footer class="footer text-center">
             <div class="container">
@@ -160,5 +230,8 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script>
+            includeHTMLSnippet();
+        </script>
     </body>
 </html>
